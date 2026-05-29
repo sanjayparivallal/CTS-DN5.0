@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>jQuery Example</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h1>Community Event</h1>
+
+<button id="registerBtn">Register</button>
+
+<div id="card">
+    <h3>Music Show</h3>
+</div>
+
+<script>
+$("#registerBtn").click(function () {
+
+    $("#card").fadeOut(1000);
+
+    setTimeout(() => {
+        $("#card").fadeIn(1000);
+    }, 1000);
+});
+
+/*
+Benefit of React or Vue:
+They help build large applications easily using reusable components.
+*/
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Forms</title>
+</head>
+<body>
+
+<h1>Event Registration</h1>
+
+<form id="form">
+
+    <input type="text" name="name" placeholder="Name">
+    <span id="nameError"></span>
+
+    <br><br>
+
+    <input type="email" name="email" placeholder="Email">
+    <span id="emailError"></span>
+
+    <br><br>
+
+    <select name="event">
+        <option value="">Select Event</option>
+        <option value="Music Show">Music Show</option>
+        <option value="Dance Program">Dance Program</option>
+    </select>
+
+    <span id="eventError"></span>
+
+    <br><br>
+
+    <button type="submit">Register</button>
+
+</form>
+
+<script>
+const form = document.getElementById("form");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = form.elements["name"].value;
+    const email = form.elements["email"].value;
+    const selectedEvent = form.elements["event"].value;
+
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("emailError").innerText = "";
+    document.getElementById("eventError").innerText = "";
+
+    let valid = true;
+
+    if (name === "") {
+        document.getElementById("nameError").innerText = "Enter name";
+        valid = false;
+    }
+
+    if (email === "") {
+        document.getElementById("emailError").innerText = "Enter email";
+        valid = false;
+    }
+
+    if (selectedEvent === "") {
+        document.getElementById("eventError").innerText = "Select event";
+        valid = false;
+    }
+
+    if (valid) {
+        alert("Registration Successful");
+    }
+});
+</script>
+
+</body>
+</html>

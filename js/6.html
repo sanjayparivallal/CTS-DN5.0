@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Arrays and Methods</title>
+</head>
+<body>
+
+<h1>Community Events</h1>
+
+<div id="output"></div>
+
+<script>
+const output = document.getElementById("output");
+
+let events = [
+    { name: "Music Show", category: "Music" },
+    { name: "Dance Program", category: "Dance" }
+];
+
+events.push({ name: "Singing Contest", category: "Music" });
+
+const musicEvents = events.filter(event => event.category === "Music");
+
+const cards = musicEvents.map(event => {
+    return `<p>Workshop on ${event.name}</p>`;
+});
+
+output.innerHTML = cards.join("");
+</script>
+
+</body>
+</html>

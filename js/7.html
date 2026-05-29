@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>DOM Manipulation</title>
+</head>
+<body>
+
+<h1>Community Events</h1>
+
+<div id="events"></div>
+
+<script>
+const eventsDiv = document.querySelector("#events");
+
+const events = [
+    { name: "Music Show", seats: 2 },
+    { name: "Dance Program", seats: 1 }
+];
+
+events.forEach(event => {
+
+    const card = document.createElement("div");
+
+    const title = document.createElement("h3");
+    title.innerText = event.name;
+
+    const seats = document.createElement("p");
+    seats.innerText = "Seats: " + event.seats;
+
+    const registerBtn = document.createElement("button");
+    registerBtn.innerText = "Register";
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.innerText = "Cancel";
+
+    registerBtn.onclick = function () {
+        if (event.seats > 0) {
+            event.seats--;
+            seats.innerText = "Seats: " + event.seats;
+        }
+    };
+
+    cancelBtn.onclick = function () {
+        event.seats++;
+        seats.innerText = "Seats: " + event.seats;
+    };
+
+    card.appendChild(title);
+    card.appendChild(seats);
+    card.appendChild(registerBtn);
+    card.appendChild(cancelBtn);
+
+    eventsDiv.appendChild(card);
+});
+</script>
+
+</body>
+</html>

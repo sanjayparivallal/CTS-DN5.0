@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Event Handling</title>
+</head>
+<body>
+
+<h1>Community Events</h1>
+
+<select id="category">
+    <option value="All">All</option>
+    <option value="Music">Music</option>
+    <option value="Dance">Dance</option>
+</select>
+
+<br><br>
+
+<input type="text" id="search" placeholder="Search event">
+
+<div id="events"></div>
+
+<script>
+const eventsDiv = document.getElementById("events");
+const category = document.getElementById("category");
+const search = document.getElementById("search");
+
+const events = [
+    { name: "Music Show", category: "Music", seats: 2 },
+    { name: "Dance Program", category: "Dance", seats: 3 },
+    { name: "Singing Contest", category: "Music", seats: 1 }
+];
+
+function displayEvents(list) {
+
+    eventsDiv.innerHTML = "";
+
+    list.forEach(event => {
+
+        const card = document.createElement("div");
+
+        const title = document.createElement("h3");
+        title.innerText = event.name;
+
+        const info = document.createElement("p");
+        info.innerText = event.category + " | Seats: " + event.seats;
+
+        const btn = document.createElement("button");
+        btn.innerText = "Register";
+
+        btn.onclick = function () {
+            if (event.seats > 0) {
+                event.seats--;
+                info.innerText = event.category + " | Seats: " + event.seats;
+            }
+        };
+
+        card.appendChild(title);
+        card.appendChild(info);
+        card.appendChild(btn);
+
+        eventsDiv.appendChild(card);
+    });
+}
+
+displayEvents(events);
+
+category.onchange = function () {
+
+    const value = category.value;
+
+    if (value === "All") {
+        displayEvents(events);
+    } else {
+        const filtered = events.filter(event => event.category === value);
+        displayEvents(filtered);
+    }
+};
+
+search.onkeydown = function () {
+
+    const text = search.value.toLowerCase();
+
+    const filtered = events.filter(event =>
+        event.name.toLowerCase().includes(text)
+    );
+
+    displayEvents(filtered);
+};
+</script>
+
+</body>
+</html>

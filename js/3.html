@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <link rel="stylesheet" href="style.css">
+<h1>Community Events</h1>
+
+    <div id="events"></div>
+<body>
+    <script>
+        const events = [
+            { name: "Music Show", seats: 10, upcoming: true },
+            { name: "Food Camp", seats: 0, upcoming: true },
+            { name: "Dance Event", seats: 5, upcoming: false }
+        ];
+
+        const box = document.getElementById("events");
+        events.forEach(event => {
+            if (event.upcoming && event.seats > 0) {
+
+                box.innerHTML += `
+                    <p>
+                        ${event.name} - Seats: ${event.seats}
+                    </p>
+                `;
+
+            } else {
+
+                console.log(event.name + " not available");
+            }
+        });
+
+        function register(event) {
+
+            try {
+                if (event.seats <= 0) {
+                    throw "No seats available";
+                }
+
+                event.seats--;
+
+                console.log("Registered successfully");
+                console.log("Remaining seats: " + event.seats);
+
+            } catch (error) {
+
+                console.log("Error: " + error);
+            }
+        }
+
+        register(events[0]);
+        register(events[1]);
+    </script>
+</body>
+</html>

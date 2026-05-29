@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Objects and Prototypes</title>
+</head>
+<body>
+
+<h1>Community Event</h1>
+
+<div id="output"></div>
+
+<script>
+const output = document.getElementById("output");
+
+function Event(name, seats) {
+    this.name = name;
+    this.seats = seats;
+}
+
+Event.prototype.checkAvailability = function () {
+    if (this.seats > 0) {
+        return "Seats Available";
+    } else {
+        return "Event Full";
+    }
+};
+
+const event1 = new Event("Music Show", 5);
+
+output.innerHTML += `<p>${event1.name} : ${event1.checkAvailability()}</p>`;
+
+const entries = Object.entries(event1);
+
+entries.forEach(item => {
+    output.innerHTML += `<p>${item[0]} : ${item[1]}</p>`;
+});
+</script>
+
+</body>
+</html>

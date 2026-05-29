@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Community Portal</title>
+</head>
+<body>
+
+    <h1>Community Events</h1>
+
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById("output");
+        let events = [];
+        function addEvent(name, category, seats) {
+
+            events.push({
+                name: name,
+                category: category,
+                seats: seats
+            });
+
+            console.log(name + " added");
+        }
+
+        function registerUser(eventName) {
+            const event = events.find(e => e.name === eventName);
+            if (event && event.seats > 0) {
+                event.seats--;
+                console.log("Registered for " + event.name);
+            } else {
+                console.log("No seats available");
+            }
+        }
+
+        function filterEventsByCategory(category) {
+            return events.filter(event => event.category === category);
+        }
+
+        function registrationTracker() {
+            let total = 0;
+            return function () {
+                total++;
+                return total;
+            };
+        }
+
+        const musicRegistrationCount = registrationTracker();
+        addEvent("Music Show", "Music", 5);
+        addEvent("Dance Program", "Dance", 3);
+        addEvent("Singing Contest", "Music", 4);
+        registerUser("Music Show");
+        console.log("Music registrations: " + musicRegistrationCount());
+        registerUser("Singing Contest");
+        console.log("Music registrations: " + musicRegistrationCount());
+        const musicEvents = filterEventsByCategory("Music");
+        musicEvents.forEach(event => {
+            output.innerHTML += `
+                <p>
+                    ${event.name} - ${event.category} - Seats: ${event.seats}
+                </p>
+            `;
+        });
+
+    </script>
+
+</body>
+</html>

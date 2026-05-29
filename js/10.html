@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Modern JavaScript</title>
+</head>
+<body>
+
+<h1>Community Events</h1>
+
+<div id="output"></div>
+
+<script>
+const output = document.getElementById("output");
+
+const events = [
+    { name: "Music Show", category: "Music" },
+    { name: "Dance Program", category: "Dance" },
+    { name: "Singing Contest", category: "Music" }
+];
+
+function addEvent(name = "New Event", category = "General") {
+    return { name, category };
+}
+
+const newEvent = addEvent();
+
+events.push(newEvent);
+
+const clonedEvents = [...events];
+
+const musicEvents = clonedEvents.filter(event => event.category === "Music");
+
+musicEvents.forEach(event => {
+
+    const { name, category } = event;
+
+    output.innerHTML += `
+        <p>
+            ${name} - ${category}
+        </p>
+    `;
+});
+</script>
+
+</body>
+</html>
